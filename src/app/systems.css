@@ -1,0 +1,142 @@
+/* Architecture: an engineering drawing with an editorial specification. */
+.system { background: #101411; border-top: 1px solid #3b4437; }
+.system-title { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 65px; }
+.system-title h2 { font-size: clamp(42px, 5.5vw, 88px); font-weight: 400; line-height: 1.04; letter-spacing: -.065em; }
+.system-title h2 span { color: #aab89c; }
+.system-title > p { max-width: 350px; font-size: 17px; line-height: 1.7; color: #afb6a9; }
+.system .system-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 7%; align-items: start; }
+.system-blueprint { position: sticky; top: 120px; margin: 0; min-width: 0; border-top: 1px solid #56614e; }
+.blueprint-caption { display: flex; justify-content: space-between; gap: 12px; padding: 18px 0; font: 10px/1.5 var(--mono); color: #aab89c; }
+.stack-blueprint { width: 100%; max-height: 52vh; display: block; overflow: hidden; }
+.blueprint-guide { stroke: #404a3b; stroke-dasharray: 3 6; fill: none; }
+.plane-edge { fill: #172017; stroke: #6b7b5e; }
+.plane-face { fill: #253021; stroke: #9cae8a; }
+.blueprint-plane-0 .plane-face { fill: #b9c5a4; }
+.plane-detail { fill: none; stroke: #90a180; opacity: .4; }
+.stack-blueprint text { fill: #c5d0b8; font: 12px var(--mono); letter-spacing: .12em; }
+.blueprint-plane-0 text { fill: #293722; }
+.stack-blueprint .plane-index { fill: #9cae8a; font-size: 11px; }
+.plane-port { fill: #d7e5be; }
+.request-route { fill: none; stroke: #c5d0b8; stroke-width: 1; stroke-dasharray: 3 5; opacity: .45; }
+.request-packet { fill: #e0edc9; opacity: 0; }
+.system-blueprint figcaption { border-top: 1px solid #3d4937; padding-top: 20px; font: 10px var(--mono); color: #aab89c; }
+.system-specification { min-width: 0; }
+.system .architecture-layer { display: grid; grid-template-columns: 34px 1fr; gap: 18px; padding: 30px 0; border: 0; border-top: 1px solid #49553f; background: none; position: relative; }
+.architecture-index { font: 13px/1.7 var(--mono); color: #8c9d7a; }
+.system .architecture-layer::before, .system .architecture-layer::after { display: none; }
+.system .architecture-layer .eyebrow { font-size: 10px !important; color: #aab89c; }
+.system .architecture-layer h3 { margin: 14px 0; font-size: clamp(26px, 2.7vw, 40px); font-weight: 400; line-height: 1.12; letter-spacing: -.04em; }
+.system .architecture-layer .layer-detail { font-size: 16px !important; max-width: 400px; }
+.system .architecture-layer .stack-items { margin-top: 20px; color: #9eac90; line-height: 1.85; font-size: 11px !important; }
+.system-proof { display: flex; justify-content: space-between; gap: 18px; align-items: center; padding: 24px 0; border-top: 1px solid #49553f; }
+.system-proof > span { font-size: 13px; color: #aab3a0; max-width: 190px; }
+.system-proof b { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 400; min-height: 44px; }
+
+/* TOM: a complete product chapter. Subsystems live outside the sticky console. */
+.tom { background: #0c1213; --data: #a4bfbe; --line: #354345; --line-active: #7b9691; }
+.tom-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 7%; align-items: center; margin-bottom: 45px; }
+.tom-wordmark { font-size: clamp(130px, 19vw, 290px); font-weight: 500; letter-spacing: -.1em; line-height: .8; color: #e4e9df; }
+.tom-wordmark > span { color: #a4bfbe; }
+.tom-intro h2 { font-size: clamp(32px, 3.7vw, 58px); font-weight: 400; line-height: 1.08; letter-spacing: -.05em; margin: 18px 0; }
+.tom-intro h2 > span { color: #a4bfbe; }
+.tom-intro > div { min-width: 0; }
+.tom-intro .section-deck { font-size: 16px; max-width: 440px; }
+.tom-manifest { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid #536260; border-bottom: 1px solid #354345; padding: 22px 0; margin-bottom: 54px; font: 10px/1.5 var(--mono); color: #a7b8b1; }
+.tom-manifest i { width: 6px; height: 6px; display: inline-block; background: #b9c5a4; border-radius: 50%; margin-right: 9px; }
+.tom .tom-scene { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 6%; overflow: visible; align-items: start; }
+.tom .tom-system { position: sticky; top: 108px; max-height: none; overflow: visible; max-width: 510px; padding: 22px; margin: 0; border: 1px solid #526460; border-radius: 12px; background: #111b1b; box-shadow: 0 16px 50px #0002; }
+.tom-system-head { display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid #344743; }
+.tom-system-head .eyebrow { font-size: 9px !important; letter-spacing: .04em; }
+.tom-phase { font-size: 10px; }
+.tom .nucleus-map { width: 100%; height: min(29vw, 330px, 39vh); min-height: 220px; aspect-ratio: auto; margin: 4px 0 10px; isolation: isolate; }
+.tom .nucleus-center { width: 42%; max-width: 175px; border-color: #7d9690; }
+.tom .nucleus-center > span { font-size: clamp(40px, 4.6vw, 66px); }
+.tom .nucleus-state { font-size: 9px; }
+.tom .nucleus-label { font-size: 8px; }
+.tom-scanline { position: absolute; inset: 0 12% auto; height: 1px; opacity: 0; z-index: 3; background: #c7e2d6; box-shadow: 0 0 14px 2px #a4bfbe40; pointer-events: none; }
+.tom .nucleus-wave { top: 47%; left: 14%; right: 14%; }
+.tom .nucleus-wave .pipeline-graphic { margin: 0; }
+.tom .tom-controls { padding-top: 13px; }
+.tom .tom-controls .tom-node { font-size: 10px; min-height: 55px; gap: 7px; border-radius: 3px; padding: 10px 2px; }
+.tom .tom-controls .tom-node small { font-size: 9px; }
+.tom-console-note { font-size: 13px; line-height: 1.6; padding: 16px 0 0; color: #d5ded3; }
+.tom-console-note > span { font-size: 11px; color: #94a99f; }
+.tom .tom-principles { font: 9px var(--mono); margin-top: 16px; border-top: 1px solid #344743; gap: 10px 20px; color: #9db1a7; }
+.tom .tom-stages { padding: 0; overflow: visible; }
+.tom .tom-stages > .system-trace { display: none; }
+.tom .tom-stage { border: 1px solid #344743; border-radius: 8px; background: #10191a; padding: 28px; margin: 0 0 24px; }
+.tom .tom-stage header { border-bottom: 0; }
+.tom .tom-stage .eyebrow { font-size: 10px !important; }
+.tom .tom-stage h3 { font-size: clamp(38px, 4vw, 64px); line-height: 1; margin: 22px 0 18px; }
+.tom .tom-stage > .pipeline-graphic { background: #142020; border: 1px solid #2c413e; border-radius: 4px; padding: 14px; margin: 20px 0; max-height: 170px; }
+.tom .tom-stage > p { font-size: 16px !important; line-height: 1.65; }
+.tom .tom-stage .stage-tech { margin-top: 15px; font-size: 11px !important; }
+.tom .permission-demo { padding: 18px; background: #0b1313; border-radius: 4px; }
+.tom .permission-flow { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 10px; }
+.tom .permission-flow i { width: 20px; height: 1px; margin: 0; }
+.tom .permission-demo > small { font-size: 11px; }
+.tom-lab { display: grid; grid-template-columns: .75fr 1.25fr; gap: 7%; padding: 42px 0; margin-top: 45px; border-top: 1px solid #536260; border-bottom: 1px solid #354345; align-items: start; }
+.tom-lab h3 { margin: 18px 0; font-size: 37px; line-height: 1.1; font-weight: 400; letter-spacing: -.045em; }
+.tom-lab > div > p { max-width: 300px; font-size: 16px; line-height: 1.6; color: #9eafa7; }
+.tom .tom-explorer { margin: 0; padding: 24px; border: 1px solid #42534d; border-radius: 8px; background: #111b1b; min-width: 0; }
+.tom .tom-explorer-head .eyebrow { font-size: 9px !important; }
+.tom .tom-explorer-head > span:last-child { display: none; }
+.tom .tom-explorer-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; margin: 20px 0; }
+.tom .tom-explorer-tabs button { min-height: 44px; font-size: 10px; padding: 8px 3px; border-bottom: 1px solid #344743; }
+.tom .tom-explorer-tabs button.selected { border-color: #a4bfbe; background: #a4bfbe0a; }
+.tom .tom-explorer-view { min-height: 150px; animation: none; }
+.tom .tom-explorer-view > .eyebrow { font-size: 11px !important; }
+.tom .tom-explorer-view p { font-size: 14px; line-height: 1.7; margin: 15px 0 22px; }
+.tom .tom-explorer-nodes { gap: 8px; }
+.tom .tom-explorer-nodes b { font-size: 10px; padding: 9px; }
+.tom .tom-bottom { margin-top: 55px; border: 0; padding-top: 0; }
+html[data-experience-mode='quick'] .blueprint-plane, html[data-experience-mode='quick'] .nucleus-map,
+html[data-experience-mode='quick'] .system-specification .architecture-layer > div,
+html[data-experience-mode='quick'] .tom-stage .pipeline-graphic * { transform: none !important; clip-path: none !important; opacity: 1 !important; }
+html[data-experience-mode='quick'] .request-packet, html[data-experience-mode='quick'] .tom-scanline { opacity: 0 !important; }
+@media(min-width:1000px) and (min-height:700px) and (max-height:800px) {
+  .tom .nucleus-map { height: 190px; min-height: 0; }
+  .tom .tom-system { padding: 18px; }
+}
+@media(max-width:999px), (max-height:699px) {
+  .system-title { display: block; }
+  .system-title > p { margin-top: 25px; }
+  .system .system-layout { grid-template-columns: 1fr; gap: 40px; }
+  .system-blueprint { position: relative; top: auto; max-width: 620px; width: 100%; margin: auto; }
+  .stack-blueprint { max-height: 480px; }
+  .tom .tom-scene { grid-template-columns: 1fr; gap: 32px; }
+  .tom .tom-system { position: relative; top: auto; width: 100%; margin: auto; }
+  .tom .nucleus-map { height: 290px; }
+  .tom .tom-stages { width: 100%; max-width: none; }
+  .tom-lab { grid-template-columns: 1fr; gap: 26px; }
+  .tom-intro { gap: 30px; }
+}
+@media(max-width:640px) {
+  .system-title h2 { font-size: clamp(36px, 10vw, 58px); }
+  .system-title { margin-bottom: 35px; }
+  .system-title > p { font-size: 16px; }
+  .blueprint-caption { font-size: 8px; }
+  .system .architecture-layer { grid-template-columns: 22px 1fr; gap: 12px; padding: 25px 0; }
+  .system .architecture-layer h3 { font-size: 29px; }
+  .system .architecture-layer .stack-items { font-size: 10px !important; }
+  .system-proof { align-items: start; }
+  .system-proof > span { max-width: 130px; }
+  .tom-intro { grid-template-columns: 1fr; gap: 28px; }
+  .tom-wordmark { font-size: 33vw; }
+  .tom-intro h2 { font-size: 37px; }
+  .tom-manifest { flex-wrap: wrap; font-size: 9px; gap: 14px 25px; margin-bottom: 30px; }
+  .tom .tom-system { padding: 18px 14px; }
+  .tom .tom-system-head { flex-direction: row; }
+  .tom-system-head .eyebrow { max-width: 120px; font-size: 8px !important; }
+  .tom .nucleus-map { height: 240px; min-height: 0; }
+  .tom .nucleus-center > span { font-size: 44px; }
+  .tom .nucleus-state { font-size: 7px; }
+  .tom .tom-stage { padding: 24px 18px; }
+  .tom .tom-stage .eyebrow { font-size: 9px !important; letter-spacing: 0; }
+  .tom .tom-stage > .pipeline-graphic { padding: 8px 2px; }
+  .tom .tom-stage h3 { font-size: 40px; }
+  .tom-lab h3 { font-size: 33px; }
+  .tom .tom-explorer { padding: 18px 12px; }
+  .tom .tom-explorer-tabs button { font-size: 8px; }
+  .tom .tom-explorer-nodes b { font-size: 9px; }
+}

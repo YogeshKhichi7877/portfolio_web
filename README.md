@@ -1,0 +1,66 @@
+# YOGESH.EXE
+
+A résumé-grounded personal portfolio for Yogesh Khinchi, built as a cinematic systems story. The experience uses Next.js App Router, TypeScript, GSAP ScrollTrigger, Lenis, inline SVG diagrams, and responsive CSS. It runs locally without a database, API keys, or a backend service.
+
+## Run locally
+
+Use Node.js 22.9 or newer.
+
+```powershell
+cd C:\Users\Acer\Desktop\new
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`. For a production check:
+
+```powershell
+npm run build
+npm start
+```
+
+Email actions open the visitor’s mail application. External project and profile links open in a new tab. Set `NEXT_PUBLIC_SITE_URL` in `.env.local` before using a public domain so canonical URLs, metadata, robots, and sitemap entries use the correct origin.
+
+## Experience map
+
+- The hero assembles the name from outlined letter fragments as the reader enters the page.
+- Journey, System, and Engineering Principles use section-local “SYSTEM TRACE” diagrams. Paths are measured from the real local anchors, so the trace follows the content at different sizes.
+- Skills uses six editorial capability sheets with project evidence and a résumé shortcut. GSAP unfolds each sheet on a perspective hinge with a fading page shadow and rotating index number. Scroll reversal, keyboard focus, Quick View, reduced motion, and no-JavaScript reading are supported. Mineral-green accents lead into the existing orange Ruminate transition.
+- TOM is a pinned, stage-selectable architecture story: Listen → Understand → Act → Verify. The permission gate is an illustration of a boundary; it never opens an application or runs a command.
+- The fixed Experience dock switches Cinematic and Quick View browsing, toggles global X-Ray mode, and opens System Control or Diagnostics. On narrow screens it becomes a round toggle with animated, touch-sized controls. `X`, `T`, `G`, `R`, and Escape are keyboard shortcuts; inputs and text fields are left alone.
+- X-Ray progressively separates each project into confirmed UI, frontend, API, data, and service layers. TOM’s Memory, Automation, Architecture, and Diagnostics views are controlled visual explanations, and selected System Trace nodes expose conceptual signal panels.
+- Projects are a responsive gallery for ResumeLens, PaperStack, and Expense Tracker. ResumeLens and PaperStack use captured public product screens. Expense Tracker uses a labelled workflow diagram because its public preview was still loading during capture.
+- Ruminate is an editorial Tech Lead feature with the supplied portrait, the exact supplied official club logo, real public screenshots of the three platform surfaces, and a portal feature image.
+- Impact, Now, Behind the Portfolio, and Contact close the system journey with four résumé-grounded metrics and clear next actions.
+- The App Router includes a branded `not-found.tsx`, `error.tsx`, `global-error.tsx`, and lightweight `loading.tsx`. Network status and failed images resolve to non-blocking technical feedback.
+
+## Where to edit
+
+- `src/data/portfolio.ts` — identity, links, project descriptions, milestones, and TOM copy.
+- `src/data/skills.ts` — grouped technologies and grounded project associations.
+- `src/app/capabilities.css` — capability sheet layout and the restrained base accent palette.
+- `src/sections/` — the narrative chapters (`hero`, `journey`, `skills`, `principles`, `tom`, `projects`, `ruminate`, `ending`, `now`).
+- `src/components/project-visual.tsx` — product screenshot and workflow visual treatments.
+- `src/components/system-trace.tsx` and `src/animations/trace-director.ts` — measured local trace paths and packet handoffs.
+- `src/animations/scroll-director.tsx` — the single GSAP/Lenis lifecycle, pinning, stage sync, refresh, resize, and reduced-motion handling.
+- `src/components/navigation.tsx` and `src/components/pointer-detail.tsx` — command navigation, chapter rail, and precision pointer labels.
+- `src/app/globals.css` and `src/app/experience.css` — design tokens, layout, responsive behavior, and reduced-motion fallback.
+- `public/yogesh-khinchi-portrait.png` and `public/Yogesh-Khinchi-Resume.pdf` — supplied portrait and résumé download.
+
+## Accessibility and motion
+
+Ctrl/Cmd+K opens searchable chapter navigation; Escape closes it and restores focus. The site includes a skip link, native focus states, semantic headings and links, keyboard-accessible skill tooltips, and a real `<dialog>` command palette. Reduced-motion preferences remove smooth scrolling, pinning, travelling packets, and reveal motion while keeping every section and project available in normal document flow. Touch and coarse pointers keep the native cursor.
+
+## Content provenance
+
+Copy and metrics come from the supplied résumé, the supplied portrait, and the user-provided description of the current Ruminate Tech Lead role and contributions. The four impact figures are 48+ integrations, 700+ tests, 500+ PaperStack students, and three Ruminate platform surfaces. Product screenshots in `public/products/` were captured from the linked public pages and are used as visual references; the Expense Tracker preview is intentionally represented by a clearly labelled workflow diagram. No project-specific repository URLs or unsupported performance claims are invented.
+
+## Checks
+
+```powershell
+npm run typecheck
+npm run lint
+npm run build
+```
+
+The browser QA scripts in `qa/` cover the production preview across 1920, 1440, 1366, 1024, 768, 430, 390, 375, and 360 px; forward/backward scrolling; mid-page refresh; resize and orientation changes; reduced motion; command search and focus restoration; keyboard access to all project links; résumé response type; JavaScript-disabled content; image loading; and console/page errors. `qa/feature-check.cjs` additionally exercises X-Ray, System Control, Diagnostics, TOM subsystem tabs, trace inspection, and Quick View. The final workspace run completed with no recorded errors. Lighthouse scores and cross-browser certification depend on the deployment environment.
