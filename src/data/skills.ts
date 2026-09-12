@@ -7,7 +7,7 @@ export const skills: SkillGroup[] = [
     {name:'JavaScript',usedIn:'MERN applications'}, {name:'Python',usedIn:'TOM'}, {name:'TypeScript',usedIn:'This portfolio'},
     {name:'C'}, {name:'C++'}, {name:'HTML5'}, {name:'CSS3'}, {name:'Dart',note:'Basic'}]},
   {id:'frontend',category:'Frontend',purpose:'The human interface',technologies:[
-    {name:'React',usedIn:'TOM · Resume AI · PaperStack · Expense Tracker · Ruminate'}, {name:'Next.js',usedIn:'This portfolio'},
+    {name:'React.js',usedIn:'TOM · Resume AI · PaperStack · Expense Tracker · Ruminate'}, {name:'Next.js',usedIn:'This portfolio'},
     {name:'Tailwind CSS',usedIn:'PaperStack · Expense Tracker · Ruminate'}, {name:'Redux Toolkit'}]},
   {id:'backend',category:'Backend',purpose:'The connection layer',technologies:[
     {name:'Node.js',usedIn:'Resume AI · PaperStack · Expense Tracker'}, {name:'Express',usedIn:'Resume AI · PaperStack · Expense Tracker'},

@@ -38,4 +38,14 @@ export function createSystemMotion(desktop: boolean) {
   });
   // Principles use expanding rules and a sequential decision diagram, not cards.
   gsap.utils.toArray<HTMLElement>('.principle').forEach(row=>gsap.from(row.querySelector('h3'),{wordSpacing:'20px',opacity:.25,duration:.8,scrollTrigger:{trigger:row,start:'top 85%',toggleActions:'play none none reverse'}}));
+  // Award impressions land like ink stamps; the colophon assembles a miniature page.
+  gsap.utils.toArray<HTMLElement>('.award-note').forEach((note,index)=>{
+    const impression=gsap.timeline({scrollTrigger:{trigger:note,start:'top 78%',toggleActions:'play none none reverse'}});
+    impression.from(note.querySelector('.award-stamp'),{scale:1.65,rotation:index?28:-32,opacity:0,duration:.55,ease:'power3.in'},0)
+      .from(note.querySelector('.award-rule'),{scaleX:0,duration:.65,ease:'power3.out'},.4);
+  });
+  const cutaway=gsap.timeline({scrollTrigger:{trigger:'.workbench-body',start:'top 88%',end:'top 35%',scrub:.5}});
+  cutaway.from('.build-preview',{rotation:-5,y:35,scale:.92,duration:1,ease:'power2.out'},0)
+    .from('.preview-cards i',{scaleY:0,transformOrigin:'bottom',stagger:.15,duration:.6},.3)
+    .from('.preview-baseline span',{opacity:0,y:8,stagger:.1,duration:.3},.8);
 }

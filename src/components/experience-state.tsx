@@ -1,5 +1,6 @@
 'use client';
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Activity, ArrowUpRight, Compass, Layers, Play, SlidersHorizontal, X, Zap } from 'lucide-react';
 import { person } from '@/data/portfolio';
 
 type ExperienceMode = 'cinematic' | 'quick';
@@ -57,16 +58,32 @@ export function ExperienceProvider({ children }: { children: React.ReactNode }) 
 export function ExperienceDock() {
   const { xray, toggleXray, mode, setMode, setDiagnostics, setControlCenter } = useExperience();
   const [expanded, setExpanded] = useState(false);
-  const closeAfter = (action: () => void) => { action(); setExpanded(false); };
+  const root = useRef<HTMLDivElement>(null);
+  const toggle = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!expanded) return;
+    // Visibility is animated: focus after the panel settles, or immediately for reduced motion.
+    const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 360;
+    const focusTimer = window.setTimeout(() => root.current?.querySelector<HTMLButtonElement>('.dock-option')?.focus({ preventScroll: true }), delay);
+    const outside = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setExpanded(false); };
+    const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') { setExpanded(false); toggle.current?.focus(); } };
+    document.addEventListener('pointerdown', outside);
+    document.addEventListener('keydown', escape);
+    return () => { window.clearTimeout(focusTimer); document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); };
+  }, [expanded]);
+  const closeAfter = (action: () => void) => { setExpanded(false); toggle.current?.focus(); action(); };
   return <>
-    <div className={`experience-dock ${expanded ? 'is-expanded' : ''}`} aria-label="Experience controls">
-      <button className="experience-dock-toggle" onClick={() => setExpanded(value => !value)} aria-expanded={expanded} aria-label={expanded ? 'Close experience controls' : 'Open experience controls'}><span aria-hidden="true">{expanded ? '×' : '+'}</span></button>
-      <span className="eyebrow">EXPERIENCE</span>
-      <button tabIndex={expanded ? 0 : -1} className={`dock-option ${mode === 'cinematic' ? 'selected' : ''}`} onClick={() => closeAfter(() => setMode('cinematic'))} aria-pressed={mode === 'cinematic'}>CINEMATIC</button>
-      <button tabIndex={expanded ? 0 : -1} className={`dock-option ${mode === 'quick' ? 'selected' : ''}`} onClick={() => closeAfter(() => setMode('quick'))} aria-pressed={mode === 'quick'}>QUICK VIEW</button>
-      <button tabIndex={expanded ? 0 : -1} className={`dock-option dock-xray ${xray ? 'selected' : ''}`} onClick={() => closeAfter(toggleXray)} aria-pressed={xray}>[X] {xray ? 'EXIT X-RAY' : 'X-RAY'}</button>
-      <button tabIndex={expanded ? 0 : -1} className="dock-option" onClick={() => closeAfter(() => setControlCenter(true))}>SYSTEM CONTROL</button>
-      <button tabIndex={expanded ? 0 : -1} className="dock-option" onClick={() => closeAfter(() => setDiagnostics(true))}>DIAGNOSTICS</button>
+    <div ref={root} className={`experience-dock ${expanded ? 'is-expanded' : ''}`}>
+      <div id="experience-options" className="dock-panel" role="group" aria-label="Experience options" inert={!expanded} data-lenis-prevent>
+        <div className="dock-panel-heading"><span>MAKE IT YOURS</span><strong>Your experience.</strong><p>Choose how you explore.</p></div>
+        <button className={`dock-option ${mode === 'cinematic' ? 'selected' : ''}`} onClick={() => closeAfter(() => setMode('cinematic'))} aria-pressed={mode === 'cinematic'}><Play size={19}/><span>Cinematic<small>The full motion experience</small></span><i/></button>
+        <button className={`dock-option ${mode === 'quick' ? 'selected' : ''}`} onClick={() => closeAfter(() => setMode('quick'))} aria-pressed={mode === 'quick'}><Zap size={19}/><span>Quick View<small>All the work, at your pace</small></span><i/></button>
+        <div className="dock-divider"/>
+        <button className={`dock-option dock-xray ${xray ? 'selected' : ''}`} onClick={() => closeAfter(toggleXray)} aria-pressed={xray}><Layers size={19}/><span>X-Ray<small>See the project architecture</small></span><i/></button>
+        <button className="dock-option" onClick={() => closeAfter(() => setControlCenter(true))}><Compass size={19}/><span>System Control<small>Jump to a chapter</small></span><ArrowUpRight size={14}/></button>
+        <button className="dock-option" onClick={() => closeAfter(() => setDiagnostics(true))}><Activity size={19}/><span>Diagnostics<small>Inspect this experience</small></span><ArrowUpRight size={14}/></button>
+      </div>
+      <button ref={toggle} className="experience-dock-toggle" onClick={() => setExpanded(value => !value)} aria-controls="experience-options" aria-expanded={expanded} aria-label={expanded ? 'Close experience controls' : 'Open experience controls'}>{expanded ? <X size={22}/> : <SlidersHorizontal size={22}/>}<span className="dock-toggle-hint">Experience</span></button>
     </div>
     <ControlCenter/>
     <DiagnosticsPanel/>

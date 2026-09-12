@@ -25,13 +25,13 @@ Email actions open the visitor’s mail application. External project and profil
 
 - The hero assembles the name from outlined letter fragments as the reader enters the page.
 - Journey, System, and Engineering Principles use section-local “SYSTEM TRACE” diagrams. Paths are measured from the real local anchors, so the trace follows the content at different sizes.
-- Skills uses six editorial capability sheets with project evidence and a résumé shortcut. GSAP unfolds each sheet on a perspective hinge with a fading page shadow and rotating index number. Scroll reversal, keyboard focus, Quick View, reduced motion, and no-JavaScript reading are supported. Mineral-green accents lead into the existing orange Ruminate transition.
-- TOM is a pinned, stage-selectable architecture story: Listen → Understand → Act → Verify. The permission gate is an illustration of a boundary; it never opens an application or runs a command.
-- The fixed Experience dock switches Cinematic and Quick View browsing, toggles global X-Ray mode, and opens System Control or Diagnostics. On narrow screens it becomes a round toggle with animated, touch-sized controls. `X`, `T`, `G`, `R`, and Escape are keyboard shortcuts; inputs and text fields are left alone.
+- Skills uses six editorial capability sheets with project evidence and a résumé shortcut. GSAP unfolds each sheet on a perspective hinge with a fading page shadow and rotating index number. Scroll reversal, keyboard focus, Quick View, reduced motion, and no-JavaScript reading are supported. The base system uses E4FD97 lime for structure and FFBE0B amber for emphasis; Ruminate keeps its dedicated orange transition and palette.
+- How I Build assembles an isometric SVG stack with a travelling request. TOM uses a compact CSS sticky console, iris acquisition, and four distinct stage diagrams: Listen → Understand → Act → Verify. Its subsystem explorer sits in a separate full-width lab. The permission gate is an illustration; it never opens an application or runs a command.
+- The Experience launcher is a round button on desktop and mobile. Its animated panel switches Cinematic and Quick View, toggles X-Ray, and opens System Control or Diagnostics. Quick View tears down the cinematic timelines and lays out every project vertically. Optimized images retry their original asset if loading fails. `X`, `T`, `G`, `R`, and Escape are keyboard shortcuts; inputs and text fields are left alone.
 - X-Ray progressively separates each project into confirmed UI, frontend, API, data, and service layers. TOM’s Memory, Automation, Architecture, and Diagnostics views are controlled visual explanations, and selected System Trace nodes expose conceptual signal panels.
 - Projects are a responsive gallery for ResumeLens, PaperStack, and Expense Tracker. ResumeLens and PaperStack use captured public product screens. Expense Tracker uses a labelled workflow diagram because its public preview was still loading during capture.
 - Ruminate is an editorial Tech Lead feature with the supplied portrait, the exact supplied official club logo, real public screenshots of the three platform surfaces, and a portal feature image.
-- Impact, Now, Behind the Portfolio, and Contact close the system journey with four résumé-grounded metrics and clear next actions.
+- Along the Way is an editorial awards spread with stamp impressions and leadership notes. Behind the Portfolio uses a miniature browser cutaway and a three-part explanation of input, motion, and reading preferences. The desktop chapter index expands into horizontal labels on hover or keyboard focus.
 - The App Router includes a branded `not-found.tsx`, `error.tsx`, `global-error.tsx`, and lightweight `loading.tsx`. Network status and failed images resolve to non-blocking technical feedback.
 
 ## Where to edit
@@ -39,6 +39,8 @@ Email actions open the visitor’s mail application. External project and profil
 - `src/data/portfolio.ts` — identity, links, project descriptions, milestones, and TOM copy.
 - `src/data/skills.ts` — grouped technologies and grounded project associations.
 - `src/app/capabilities.css` — capability sheet layout and the restrained base accent palette.
+- `src/app/systems.css` and `src/animations/system-motion.ts` — the stack blueprint, TOM console and distinct scene animations.
+- `src/app/finishing.css`, `src/sections/milestones.tsx`, and `src/sections/now.tsx` — closing chapter designs, Experience panel, chapter index, and Quick View layout.
 - `src/sections/` — the narrative chapters (`hero`, `journey`, `skills`, `principles`, `tom`, `projects`, `ruminate`, `ending`, `now`).
 - `src/components/project-visual.tsx` — product screenshot and workflow visual treatments.
 - `src/components/system-trace.tsx` and `src/animations/trace-director.ts` — measured local trace paths and packet handoffs.
@@ -56,6 +58,8 @@ Ctrl/Cmd+K opens searchable chapter navigation; Escape closes it and restores fo
 Copy and metrics come from the supplied résumé, the supplied portrait, and the user-provided description of the current Ruminate Tech Lead role and contributions. The four impact figures are 48+ integrations, 700+ tests, 500+ PaperStack students, and three Ruminate platform surfaces. Product screenshots in `public/products/` were captured from the linked public pages and are used as visual references; the Expense Tracker preview is intentionally represented by a clearly labelled workflow diagram. No project-specific repository URLs or unsupported performance claims are invented.
 
 ## Checks
+
+`qa/finishing-check.cjs` verifies the round Experience panel, keyboard focus, overlays, repeated mode switches, saved Quick View refreshes, static content visibility, original-image recovery, and the chapter index at 320, 390, 844, and 1440 px. `qa/system-design-check.cjs` checks the stack and TOM at those sizes plus 1366 px, including stage navigation, console fit, subsystem controls, and reduced motion. Their latest results are saved beside the scripts.
 
 ```powershell
 npm run typecheck

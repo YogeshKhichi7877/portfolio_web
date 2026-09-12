@@ -5,13 +5,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { createTraces } from '@/animations/trace-director';
 import { createSystemMotion } from '@/animations/system-motion';
+import { useExperience } from '@/components/experience-state';
 
 export function ScrollDirector() {
+  const { mode } = useExperience();
   useEffect(()=>{
     gsap.registerPlugin(ScrollTrigger);
     const media=gsap.matchMedia();
     media.add({desktop:'(min-width: 1000px) and (min-height: 700px)',mobile:'(max-width: 999px), (max-height: 699px)',reduce:'(prefers-reduced-motion: reduce)'},context=>{
-      const {desktop,reduce}=context.conditions!;
+      const {desktop}=context.conditions!;
+      const reduce=context.conditions!.reduce || mode === 'quick';
       let alive=true;
       const cleanups:(()=>void)[]=[];
       // Native input stays available for touch, reduced motion and short landscape viewports.
@@ -38,8 +41,8 @@ export function ScrollDirector() {
         const routeLength=route.getTotalLength();
         assembly.addLabel('frame').from('.assembly-rule',{scaleX:.12,transformOrigin:'left',opacity:.3,duration:.5},'frame')
           .fromTo(route,{strokeDasharray:routeLength,strokeDashoffset:routeLength},{strokeDashoffset:0,duration:1.8,ease:'none'},'frame')
-          .addLabel('name',.15).from('.assembly-word-0 .assembly-letter',{yPercent:(i:number)=>(i%2?1:-1)*(desktop?65:12),rotate:(i:number)=>desktop?(i%2?3:-3):0,clipPath:desktop?'inset(48% 0 48% 0)':'inset(8% 0 8% 0)',opacity:desktop?.38:.75,stagger:.065,duration:.65,ease:'power2.out'},'name')
-          .addLabel('surname',.55).from('.assembly-word-1 .assembly-letter',{yPercent:(i:number)=>(i%2?-1:1)*(desktop?60:12),clipPath:desktop?'inset(45% 0 45% 0)':'inset(8% 0 8% 0)',opacity:desktop?.38:.75,stagger:.055,duration:.65,ease:'power2.out'},'surname')
+          .addLabel('name',.15).fromTo('.assembly-word-0 .assembly-letter',{yPercent:(i:number)=>(i%2?1:-1)*(desktop?65:12),rotate:(i:number)=>desktop?(i%2?3:-3):0,clipPath:desktop?'inset(48% 0 48% 0)':'inset(8% 0 8% 0)',opacity:desktop?.035:.06},{yPercent:0,rotate:0,clipPath:'none',opacity:1,stagger:.065,duration:.65,ease:'power2.out'},'name')
+          .addLabel('surname',.55).fromTo('.assembly-word-1 .assembly-letter',{yPercent:(i:number)=>(i%2?-1:1)*(desktop?60:12),clipPath:desktop?'inset(45% 0 45% 0)':'inset(8% 0 8% 0)',opacity:desktop?.035:.06},{yPercent:0,clipPath:'none',opacity:1,stagger:.055,duration:.65,ease:'power2.out'},'surname')
           .from('.assembly-identity',{y:18,duration:.4},1.1).from('.assembly-meter i',{scaleX:0,transformOrigin:'left',duration:1.6,ease:'none'},0);
         // Keep final content selectable and unpinned on all mobile layouts.
         gsap.utils.toArray<HTMLElement>('.reveal').forEach(el=>gsap.from(el,{y:20,opacity:.6,duration:.6,scrollTrigger:{trigger:el,start:'top 94%',toggleActions:'play none none reverse'}}));
@@ -122,13 +125,6 @@ export function ScrollDirector() {
       });
       ScrollTrigger.create({trigger:tom,start:'top bottom',end:'bottom top',onUpdate:syncTom,onRefresh:syncTom});
       ScrollTrigger.sort();
-      const modeHandler = (event: Event) => {
-        const quick = (event as CustomEvent<'cinematic' | 'quick'>).detail === 'quick';
-        ScrollTrigger.getAll().forEach(trigger => quick ? trigger.disable(true) : trigger.enable(false));
-        ScrollTrigger.refresh();
-      };
-      window.addEventListener('experience-mode-change', modeHandler);
-      cleanups.push(() => window.removeEventListener('experience-mode-change', modeHandler));
       const dialog=document.querySelector('dialog');
       const sync=()=>{if(document.hidden||dialog?.open)lenis?.stop();else lenis?.start();};
       const observer=new MutationObserver(sync);if(dialog)observer.observe(dialog,{attributes:true,attributeFilter:['open']});
@@ -142,6 +138,6 @@ export function ScrollDirector() {
       return ()=>{alive=false;cancelAnimationFrame(refreshFrame);observer.disconnect();document.removeEventListener('visibilitychange',sync);window.removeEventListener('load',refresh);window.removeEventListener('pageshow',refresh);cleanups.reverse().forEach(fn=>fn());};
     });
     return ()=>media.revert();
-  },[]);
+  },[mode]);
   return null;
 }

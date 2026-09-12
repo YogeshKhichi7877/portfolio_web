@@ -25,9 +25,11 @@ export function PointerDetail() {
         }
       };
       const hide=()=>{el.style.opacity='0';label.textContent='';};
+      // A stationary pointer must not retain a link label while the page moves.
+      window.addEventListener('scroll',hide,{passive:true});
       const hidden=()=>{if(document.hidden)hide();};
       window.addEventListener('pointermove',move,{passive:true});document.addEventListener('pointerleave',hide);window.addEventListener('blur',hide);document.addEventListener('visibilitychange',hidden);
-      return ()=>{window.removeEventListener('pointermove',move);document.removeEventListener('pointerleave',hide);window.removeEventListener('blur',hide);document.removeEventListener('visibilitychange',hidden);hide();};
+      return ()=>{window.removeEventListener('scroll',hide);window.removeEventListener('pointermove',move);document.removeEventListener('pointerleave',hide);window.removeEventListener('blur',hide);document.removeEventListener('visibilitychange',hidden);hide();};
     });
     return ()=>media.revert();
   },[]);

@@ -8,7 +8,7 @@ export const chapters = [
   { id: 'intro', label: 'Initialization' }, { id: 'journey', label: 'About / the journey' },
   { id: 'skills', label: 'Skills / toolchain' }, { id: 'system', label: 'How I build' }, { id: 'principles', label: 'Engineering principles' }, { id: 'tom', label: 'TOM / flagship' },
   { id: 'projects', label: 'Selected work' }, { id: 'ruminate', label: 'Ruminate' },
-  { id: 'impact', label: 'Impact' }, { id: 'now', label: 'Currently building' },
+  { id: 'impact', label: 'Impact' }, { id: 'milestones', label: 'Along the way' }, { id: 'now', label: 'Currently building' },
   { id: 'build', label: 'Behind this portfolio' }, { id: 'contact', label: 'Contact / next' },
 ];
 export const stack = [
