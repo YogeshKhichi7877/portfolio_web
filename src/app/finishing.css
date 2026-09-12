@@ -5,7 +5,7 @@
 .name-period,.orange,.assembly-state,.assembly-route,.assembly-cross,.stage-tech,.system-footnote{color:var(--amber)}
 .assembly-route{stroke:var(--amber)}
 .wordmark span,.primary-nav a:hover,.primary-nav a[aria-current],.header-contact:hover{color:var(--amber)}
-.assembly-solid{opacity:1}.assembly-letter{opacity:.035}.assembly-outline{-webkit-text-stroke-color:#E4FD9730}
+.assembly-solid{opacity:1}.assembly-letter{opacity:1}.assembly-outline{-webkit-text-stroke-color:#E4FD9730}
 .assembly-hero .assembly-solid,.assembly-hero .assembly-letter{color:#fff}
 .assembly-hero .name-period{color:#fff}
 /* The identity stays white-led; a few indexed glyphs carry the system colors. */

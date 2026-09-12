@@ -4,7 +4,7 @@ import { person } from '@/data/portfolio';
 
 export function Now() {
   return <section id="now" className="chapter now section-pad"><ChapterLabel number="09" title="CURRENTLY"/>
-    <div className="now-layout"><h2 className="display">Still building<span className="orange">.</span><br/><span className="muted">Still curious.</span></h2><div className="now-list" data-trace-host><SystemTrace/>
+    <div className="now-layout"><div><h2 className="display">Still building<span className="orange">.</span><br/><span className="muted">Still curious.</span></h2><p className="now-curiosity">In my free time, I explore new technologies and try them in small experiments before bringing them into my projects. I’m curious about what I can learn each day—and how that learning can improve an experience or solve a real problem.</p></div><div className="now-list" data-trace-host><SystemTrace/>
       <article data-trace-node><span className="eyebrow">BUILDING</span><h3>TOM</h3><p>Local-first intelligence. Useful desktop automation.</p></article>
       <article data-trace-node><span className="eyebrow">LEADING</span><h3>Ruminate tech</h3><p>Connected platforms for E-Cell, IIIT Surat.</p></article>
       <article data-trace-node><span className="eyebrow">STUDYING</span><h3>Computer Science</h3><p>B.Tech at IIIT Surat · 2024–2028 expected.</p></article>

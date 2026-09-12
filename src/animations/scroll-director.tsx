@@ -63,8 +63,6 @@ export function ScrollDirector() {
         if(desktop){
           ScrollTrigger.create({trigger:'.journey-layout',start:'top 125px',end:'bottom 80%',pin:'.journey-layout > div:first-child',pinSpacing:false});
         }
-        gsap.from('.integration-fan i',{scaleX:0,transformOrigin:'left',stagger:.07,scrollTrigger:{trigger:'.tom-bottom',start:'top 88%',end:'center 65%',scrub:.3}});
-        gsap.from('.test-metric .metric-digit',{yPercent:75,opacity:0,stagger:.08,scrollTrigger:{trigger:'.tom-bottom',start:'top 85%',end:'center 65%',scrub:.3}});
         let travel:gsap.core.Tween|undefined;
         const track=document.querySelector<HTMLElement>('.projects-track')!;
         const viewport=document.querySelector<HTMLElement>('.projects-viewport')!;
@@ -106,7 +104,13 @@ export function ScrollDirector() {
       cleanups.push(createTraces(Boolean(reduce)));
       const tomElements=Array.from(tom.querySelectorAll<HTMLElement>('.tom-stage'));
       let activeTom=-1;
-      const syncTom=()=>{let index=0;tomElements.forEach((el,i)=>{if(el.getBoundingClientRect().top<=innerHeight*.48)index=i;});if(index!==activeTom){activeTom=index;selectStage(index);}};
+      const syncTom=()=>{
+        let index=0, rowTop=-Infinity;
+        tomElements.forEach((el,i)=>{const top=el.getBoundingClientRect().top;if(top<=innerHeight*.48&&top>rowTop+2){rowTop=top;index=i;}});
+        // Two desktop panels share a row; retain an explicitly selected panel there.
+        if(activeTom>=0&&Math.abs(tomElements[activeTom].getBoundingClientRect().top-tomElements[index].getBoundingClientRect().top)<2)index=activeTom;
+        if(index!==activeTom){activeTom=index;selectStage(index);}
+      };
       tom.querySelectorAll<HTMLAnchorElement>('[data-tom-select]').forEach(link=>{
         const navigate=(event:MouseEvent)=>{
           if(event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
@@ -116,8 +120,10 @@ export function ScrollDirector() {
           const destination=target.getBoundingClientRect().top+window.scrollY-120;
           // Native focus/anchor scrolling may move the viewport before Lenis updates.
           // Synchronize its origin before starting a fresh stage navigation.
-          if(lenis){lenis.scrollTo(window.scrollY,{immediate:true,force:true});lenis.scrollTo(destination,{duration:.7,force:true,onComplete:syncTom});}
-          else{window.scrollTo({top:destination,behavior:'instant'});syncTom();}
+          const complete=()=>{activeTom=tomElements.indexOf(target);selectStage(activeTom);target.focus({preventScroll:true});};
+          target.tabIndex=-1;
+          if(lenis){lenis.scrollTo(window.scrollY,{immediate:true,force:true});lenis.scrollTo(destination,{duration:.7,force:true,onComplete:complete});}
+          else{window.scrollTo({top:destination,behavior:'instant'});complete();}
           history.pushState(null,'',link.hash);
         };
         link.addEventListener('click',navigate);

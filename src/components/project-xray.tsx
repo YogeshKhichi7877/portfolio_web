@@ -4,6 +4,8 @@ import gsap from 'gsap';
 import { useExperience } from '@/components/experience-state';
 
 const systems: Record<string, { label: string; nodes: string[]; note: string }> = {
+  learnstack: { label: 'LEARNSTACK / FULL STACK', nodes: ['BOOK CATALOGUE', 'REACT', 'EXPRESS / NODE', 'MONGODB', 'GUMROAD CHECKOUT'], note: 'MERN development connects the storefront to book discovery. Purchases are completed through Gumroad.' },
+  chat: { label: 'AI CHAT BOX / API ARCHITECTURE', nodes: ['REACT / TYPESCRIPT', 'SIX MODES', 'EXPRESS ROUTES', 'GEMINI SDKS'], note: 'Separate routes handle conversation, code, PDF analysis, reasoning, and structured JSON.' },
   resume: { label: 'RESUMELENS / CONFIRMED ARCHITECTURE', nodes: ['PRODUCT UI', 'REACT FRONTEND', 'EXPRESS API', 'MONGODB', 'GROQ AI'], note: 'Confirmed from the project stack and feature description.' },
   papers: { label: 'PAPERSTACK / CONFIRMED ARCHITECTURE', nodes: ['PRODUCT UI', 'REACT FRONTEND', 'EXPRESS API', 'MONGODB', 'CLOUDINARY'], note: 'Confirmed from the project stack and upload/download features.' },
   expense: { label: 'EXPENSE TRACKER / CONFIRMED ARCHITECTURE', nodes: ['DASHBOARD UI', 'REACT FRONTEND', 'EXPRESS API', 'MONGODB', 'CHART.JS'], note: 'Only the confirmed application layers are shown.' },

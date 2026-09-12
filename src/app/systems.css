@@ -24,7 +24,7 @@
 .system .architecture-layer { display: grid; grid-template-columns: 34px 1fr; gap: 18px; padding: 30px 0; border: 0; border-top: 1px solid #49553f; background: none; position: relative; }
 .architecture-index { font: 13px/1.7 var(--mono); color: #8c9d7a; }
 .system .architecture-layer::before, .system .architecture-layer::after { display: none; }
-.system .architecture-layer .eyebrow { font-size: 10px !important; color: #aab89c; }
+.system .architecture-layer .eyebrow { font-size: 10px !important; color: #69f1ed; }
 .system .architecture-layer h3 { margin: 14px 0; font-size: clamp(26px, 2.7vw, 40px); font-weight: 400; line-height: 1.12; letter-spacing: -.04em; }
 .system .architecture-layer .layer-detail { font-size: 16px !important; max-width: 400px; }
 .system .architecture-layer .stack-items { margin-top: 20px; color: #9eac90; line-height: 1.85; font-size: 11px !important; }
@@ -35,8 +35,8 @@
 /* TOM: a complete product chapter. Subsystems live outside the sticky console. */
 .tom { background: #0c1213; --data: #a4bfbe; --line: #354345; --line-active: #7b9691; }
 .tom-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 7%; align-items: center; margin-bottom: 45px; }
-.tom-wordmark { font-size: clamp(130px, 19vw, 290px); font-weight: 500; letter-spacing: -.1em; line-height: .8; color: #e4e9df; }
-.tom-wordmark > span { color: #a4bfbe; }
+.tom-wordmark { font-size: clamp(130px, 19vw, 290px); font-weight: 520; letter-spacing: -.1em; line-height: .8; color: #E4FD97; }
+.tom-wordmark > span { color: #69f1ed; }
 .tom-intro h2 { font-size: clamp(32px, 3.7vw, 58px); font-weight: 400; line-height: 1.08; letter-spacing: -.05em; margin: 18px 0; }
 .tom-intro h2 > span { color: #a4bfbe; }
 .tom-intro > div { min-width: 0; }

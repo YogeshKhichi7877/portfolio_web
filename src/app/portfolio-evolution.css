@@ -1,0 +1,128 @@
+/* Lime carries the work; amber marks navigation and decisions. */
+.assembly-identity > div span:first-child { color: var(--lime); font: 550 clamp(18px, 1.9vw, 30px)/1.15 Arial, sans-serif; letter-spacing: -.04em; }
+.assembly-identity > div span:nth-child(2) { color: var(--amber); font-size: 15px; }
+.assembly-identity > div { min-width: 0; }
+.journey-step h3 { font-size: clamp(26px, 2.3vw, 36px); color: var(--lime); }
+.journey .display .muted, .now .display .muted { color: var(--lime); }
+.design-conviction, .now-curiosity { max-width: 520px; font-size: 16px; line-height: 1.8; color: var(--muted); margin-top: 26px; }
+.design-conviction strong { font-weight: 500; color: var(--lime); }
+.design-conviction { padding-left: 18px; border-left: 2px solid var(--amber); }
+.skills { --sheet: #eef5d9; }
+.capability-folio > i:nth-child(3) { background: var(--lime); border-color: var(--lime); }
+.capability-sheet-wrap:nth-child(even) .capability-sheet { background: #e4edcb; }
+.capability-file > span, .capability-sheet .skill-detail b { color: var(--lime); }
+.blueprint-plane-0 .plane-face { fill: var(--lime); }
+.plane-port, .request-packet { fill: var(--lime); }
+.system .architecture-layer .eyebrow, .system .architecture-layer .stack-items { color: var(--lime); }
+.project-metric strong { color: var(--lime); }
+.project-copy > .eyebrow:first-child { color: var(--amber); line-height: 1.7; }
+.project-copy h4 { color: var(--lime); }
+.additional-work { grid-template-columns: .6fr 2fr; }
+.experience-dock .dock-panel { border-color: #FFBE0B66; background: #181811; }
+.dock-panel-heading > span, .experience-dock .dock-panel .dock-option > svg { color: var(--amber); }
+.experience-dock .dock-panel .dock-option.selected { background: #FFBE0B16; border-color: #FFBE0B66; }
+.dock-option.selected > i { background: var(--amber); border-color: var(--amber); }
+.experience-dock .dock-panel .dock-option:hover { background: #FFBE0B16; }
+.experience-dock .dock-panel .dock-option:focus-visible { outline-color: var(--amber); }
+.chapter-rail .rail-heading, .chapter-rail .rail-label small { color: var(--amber); }
+.chapter-rail a:hover { background: #FFBE0B16; }
+
+/* Source-derived illustration: clearly distinct from a screenshot of the app. */
+.chat-capability-map { padding: clamp(20px, 2.6vw, 38px); background: #111d22; }
+.chat-capability-map > .eyebrow { color: var(--amber); font-size: 10px; }
+.chat-capability-map h3 { font: 400 clamp(28px, 3.2vw, 48px)/1.05 Arial, sans-serif; letter-spacing: -.045em; margin: 25px 0; }
+.chat-capability-map h3 em { color: var(--lime); font-family: Georgia, serif; font-weight: 400; }
+.chat-mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+.chat-mode-grid > div { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-top: 1px solid #3a4b4d; font-size: 13px; }
+.chat-mode-grid > div > span { font: 10px var(--mono); color: var(--lime); }
+.chat-api-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 9px/1.8 var(--mono); color: #b9cacf; margin-top: 24px; }
+.chat-api-line i { color: var(--amber); font-style: normal; }
+.expense-screen img { aspect-ratio: 1872 / 905; }
+.learnstack-screen img { aspect-ratio: 1440 / 850; }
+.project-xray .xray-layers { flex-wrap: wrap; gap: 10px; }
+
+/* TOM's introduction is unchanged. The lower chapter reads like a product manual. */
+.tom .tom-scene { display: block; }
+.tom .tom-system { position: relative; top: auto; max-width: none; width: 100%; margin: 0 0 24px; padding: 28px 32px; border: 1px solid #38565c; border-radius: 16px; background: #102128; box-shadow: none; }
+.tom .tom-system-head { border-color: #38565c; }
+.tom .tom-system-head .eyebrow { max-width: none; color: #a6cdd5; }
+.tom .tom-phase { color: #98d9c6; }
+.tom-workflow-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px 0; }
+.tom-workflow-heading h3 { font-size: clamp(32px, 3.4vw, 50px); letter-spacing: -.055em; font-weight: 400; line-height: 1.03; }
+.tom-workflow-heading h3 br { display: none; }
+.tom-workflow-heading p { margin: 12px 0 0; font-size: 14px; color: #a5c0c6; }
+.tom .tom-workflow-heading .nucleus-state { font: 10px/1.6 var(--mono); color: #a7ded0; border: 1px solid #45645e; border-radius: 20px; padding: 9px 14px; margin: 0; }
+.tom .tom-controls { gap: 10px; padding: 0; border: 0; }
+.tom .tom-controls .tom-node { flex-direction: row; justify-content: flex-start; gap: 18px; padding: 18px; font: 13px var(--mono); border: 1px solid #38565c; border-radius: 8px; color: #cee0e3; background: #132930; min-height: 60px; transition: background .2s, border-color .2s; }
+.tom .tom-controls .tom-node small { color: #98c3c9; font-size: 10px; }
+.tom .tom-controls .tom-node[aria-current='step'], .tom .tom-controls .tom-node:hover { color: #e4fff4; border-color: #8bc6b7; background: #24483f; }
+.tom .tom-console-note { font-size: 11px; color: #b2c9cc; padding: 16px 0 0; }
+.tom .tom-stages { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: none; margin: 0; padding: 0; }
+.tom .tom-stage { padding: 28px 32px; margin: 0; border: 1px solid #314c52; border-radius: 12px; background: #102024; }
+.tom .tom-stage:nth-child(2), .tom .tom-stage:nth-child(3) { background: #112721; border-color: #36594c; }
+.tom .tom-stage h3 { font-size: clamp(32px, 3.2vw, 46px); margin: 20px 0; }
+.tom .tom-stage h3 > span { color: #94d5bc; }
+.tom .tom-stage header .eyebrow { color: #abd4d9; font-size: 10px !important; }
+.tom .tom-stage > p { color: #c2d4d2; font-size: 15px !important; }
+.tom .tom-stage > .pipeline-graphic { height: 160px; max-height: none; padding: 12px 0; margin: 16px 0; background: none; border: 0; border-top: 1px solid #36524e; border-bottom: 1px solid #36524e; border-radius: 0; stroke: #99c4cd; }
+.tom .tom-stage .pipeline-graphic .stage-draw { stroke: #94d5bc; }
+.tom .tom-stage .pipeline-graphic text { fill: #b1d6db; font-size: 13px; }
+.tom .tom-stage .stage-tech { color: #a4dcc4; font-size: 11px !important; }
+.tom-boundary, .tom .tom-lab { display: grid; grid-template-columns: .85fr 1.15fr; gap: 7%; align-items: center; margin-top: 32px; padding: 32px; border: 1px solid #314c52; border-radius: 12px; background: #0f1c21; }
+.tom-boundary h3, .tom .tom-lab h3 { font-size: clamp(27px, 2.4vw, 36px); font-weight: 400; letter-spacing: -.04em; line-height: 1.15; margin: 16px 0; }
+.tom-boundary > div > p, .tom .tom-lab > div > p { font-size: 14px; line-height: 1.8; color: #afc8c8; max-width: 350px; }
+.tom-boundary > div > .eyebrow, .tom .tom-lab > div > .eyebrow { color: #a4dcc4; font-size: 10px; }
+.tom .permission-demo { margin: 0; padding: 24px; background: #142c2b; border: 1px solid #40695e; border-radius: 8px; }
+.tom .permission-demo > .eyebrow { color: #b4dacc; font-size: 9px; }
+.tom .permission-demo button { background: #a4dcc4; color: #10251e; border-color: #a4dcc4; min-height: 44px; }
+.tom .permission-demo .gate-state, .tom .permission-demo .gate-action { color: #c9e8dc; }
+.tom .permission-demo[data-authorized='true'] .gate-action { color: #a4dcc4; }
+.tom .permission-demo > small { color: #aecac4; line-height: 1.6; }
+.tom .tom-explorer { background: #11282c; border-color: #38565c; }
+.tom .tom-explorer-tabs button.selected { color: #b2e7d1; background: #a4dcc412; border-color: #a4dcc4; }
+.tom .tom-explorer-nodes b { border-color: #4c7366; color: #b2e7d1; }
+.tom .tom-bottom { margin-top: 32px; padding: 30px 0 0; border-top: 1px solid #38565c; gap: 30px; }
+.tom .tom-stat strong { color: #d7ecea; font-size: clamp(48px, 5vw, 72px); }
+.tom .tom-stat strong span { color: #94d5bc; }
+.tom .tom-stat .eyebrow { color: #a4dcc4; font-size: 10px; }
+.tom .tom-stat > p { font-size: 13px; color: #afc8c8; }
+.tom .tom-summary p { font-size: 24px; }
+
+@media(min-width: 1000px) and (min-height: 700px) and (max-height: 800px) {
+  .project-slide { min-height: min(650px, calc(100svh - 94px)); padding-top: 20px; padding-bottom: 25px; }
+  .project-copy h3 { font-size: 44px; margin: 14px 0; }
+  .project-copy h4 { font-size: 17px; margin-bottom: 14px; }
+  .project-copy > p:not(.eyebrow) { font-size: 14px; line-height: 1.7; }
+  .project-copy .project-detail { font-size: 13px !important; }
+  .project-metric strong { font-size: 36px; }
+  .project-metric { margin: 12px 0; }
+}
+@media(max-width: 800px) {
+  .assembly-identity { flex-wrap: wrap; }
+  .tom .tom-system, .tom .tom-stage { padding: 24px; }
+  .tom-workflow-heading { align-items: flex-start; }
+  .tom-workflow-heading h3 br { display: block; }
+  .tom .tom-controls { grid-template-columns: 1fr 1fr; }
+  .tom-boundary, .tom .tom-lab { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
+  .tom .tom-stages { gap: 14px; }
+}
+@media(max-width: 640px) {
+  .assembly-identity > div span:first-child { font-size: 25px; }
+  .journey-step h3 { font-size: 28px; }
+  .design-conviction, .now-curiosity { font-size: 15px; }
+  .additional-work { grid-template-columns: 1fr; }
+  .chat-capability-map { padding: 22px 18px; }
+  .chat-capability-map h3 { font-size: 34px; }
+  .chat-mode-grid { gap: 0 12px; }
+  .chat-mode-grid > div { font-size: 11px; gap: 8px; }
+  .chat-screen figcaption { font-size: 8px; line-height: 1.6; }
+  .tom .tom-stages { grid-template-columns: 1fr; }
+  .tom .tom-system, .tom .tom-stage, .tom-boundary, .tom .tom-lab { padding: 22px 18px; }
+  .tom-workflow-heading { flex-direction: column; gap: 16px; }
+  .tom-workflow-heading h3 br { display: none; }
+  .tom .tom-controls .tom-node { padding: 14px 12px; gap: 12px; font-size: 11px; }
+  .tom .tom-stage h3 { font-size: 37px; }
+  .tom .permission-demo { padding: 18px 14px; }
+  .tom .tom-bottom { grid-template-columns: 1fr 1fr; }
+  .tom .tom-stat strong { font-size: 54px; }
+}
