@@ -1,0 +1,52 @@
+/* A continuous signal instrument paired with an open editorial score. */
+.tom-loom-heading{display:grid;grid-template-columns:1fr 1fr;gap:24px 8%;align-items:end;margin:70px 0 64px}
+.tom-loom-heading>.eyebrow{grid-column:1/-1;color:#a9d5c3;font-size:10px}
+.tom-loom-heading h3{font-size:clamp(52px,6vw,90px);line-height:.98;letter-spacing:-.06em;font-weight:400}
+.tom-loom-heading h3 em{font-family:Georgia,serif;color:#b8edce;font-weight:400}
+.tom-loom-heading p{font-size:17px;line-height:1.7;color:#b1c6cc;padding-bottom:8px}
+.tom .tom-loom{display:grid;grid-template-columns:1.15fr 1fr;gap:7%;align-items:start}
+.tom .tom-loom .tom-system{position:sticky;top:115px;padding:22px 0 0;border:0;border-top:1px solid #577b7d;background:transparent;border-radius:0;margin:0}
+.tom-loom .tom-system-head{padding:0 0 18px;border:0}
+.tom .tom-signal{position:relative;margin:0 0 24px;background:radial-gradient(ellipse at 50% 48%,#183437,#0d1a21 74%);border:1px solid #31505a;border-radius:50% 50% 4px 4px / 13% 13% 4px 4px;overflow:hidden}
+.tom-signal svg{width:100%;display:block;height:auto}
+.signal-strand{fill:none;stroke:url(#signal-ink);stroke-width:1.2;opacity:.75}
+.signal-strand:nth-child(3n){stroke-width:1.8;opacity:1}
+.signal-registration{stroke:#80a8b1;opacity:.4}
+.signal-playhead{stroke:#e4fd97;stroke-width:.7;opacity:.3;stroke-dasharray:3 7}
+.tom-signal svg text{font:11px var(--mono);letter-spacing:.12em;fill:#adcbd2}
+.tom-signal svg>text:not(:last-child){transform:translateY(32px)}
+.tom-signal figcaption{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px;border-top:1px solid #31505a;font:8px/1.7 var(--mono);color:#a2c0c9}
+.tom .tom-signal .nucleus-state{font-size:10px;margin:0;color:#b8edce}
+.tom .tom-loom .tom-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-bottom:1px solid #31505a}
+.tom .tom-loom .tom-controls .tom-node{display:flex;flex-direction:column;min-height:62px;gap:10px;padding:12px 2px;border:0;border-top:2px solid transparent;background:none;border-radius:0;font-size:10px}
+.tom .tom-loom .tom-controls .tom-node[aria-current='step'],.tom .tom-loom .tom-controls .tom-node:hover{border-top-color:#b8edce;background:#b8edce0a;color:#b8edce}
+.tom .tom-loom .tom-stages{display:block}
+.tom .tom-loom .tom-stage{display:grid;grid-template-columns:65px 1fr;gap:20px;min-height:430px;align-content:center;padding:55px 0;border:0;border-bottom:1px solid #355354;border-radius:0;background:none;perspective:800px}
+.tom-stage-index{font:400 65px/1 Georgia,serif;color:#81b7b4;letter-spacing:-.07em}
+.tom-stage-content{min-width:0}
+.tom .tom-loom .tom-stage h3{font-size:clamp(38px,4vw,60px);margin:18px 0 22px}
+.tom-stage-content>p{font-size:16px;line-height:1.8;color:#c3d5d2}
+.tom-stage-content .stage-tech{font-size:11px!important;line-height:1.8;margin-top:24px;color:#a7d8c4}
+.tom-stage-rule{height:2px;background:#223d3c;margin-top:30px}
+.tom-stage-rule i{display:block;width:100%;height:100%;background:linear-gradient(90deg,#72a8c5,#b9f7d2)}
+.tom .tom-boundary,.tom .tom-lab{margin-top:64px;border-radius:0;border-inline:0;padding:40px 0;background:none}
+html[data-experience-mode='quick'] .signal-strand{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+html[data-experience-mode='quick'] .tom-stage-content,html[data-experience-mode='quick'] .tom-stage-index{opacity:1!important;transform:none!important}
+@media(max-width:999px),(max-height:699px){.tom .tom-loom{grid-template-columns:1fr;gap:40px}.tom .tom-loom .tom-system{position:relative;top:auto;max-width:680px;margin:auto}.tom .tom-loom .tom-stage{min-height:0;padding:36px 0}.tom-loom-heading{margin:42px 0}}
+@media(max-width:640px){.tom-loom-heading{grid-template-columns:1fr;gap:24px}.tom-loom-heading h3{font-size:57px}.tom-loom-heading p{font-size:15px}.tom .tom-loom .tom-stage{grid-template-columns:42px 1fr;gap:16px}.tom-stage-index{font-size:44px}.tom .tom-loom .tom-stage h3{font-size:37px}.tom-stage-content>p{font-size:15px}.tom .tom-signal .nucleus-state{font-size:8px}.tom-signal figcaption{padding:13px 10px;font-size:6px}.tom .tom-loom .tom-controls .tom-node{font-size:8px}}
+
+/* Native pointer replacement is enabled only after an eligible mouse moves. */
+.cursor-halo{display:none;position:fixed;left:-18px;top:-18px;width:36px;height:36px;border:1px solid #FFBE0Bb3;border-radius:50%;pointer-events:none;z-index:10001;opacity:0}
+.precision-pointer{width:0;height:0;z-index:10002;color:#e4fd97}
+.precision-pointer>i{inset:-3px auto auto -3px;width:6px;height:6px;border-radius:50%;background:currentColor;transform:none}
+.precision-pointer>i::before,.precision-pointer>i::after{display:none}
+.precision-pointer .cursor-arrow{position:absolute;left:-8px;top:-12px;font:20px/1 Arial,sans-serif;opacity:0;transition:opacity .2s}
+.precision-pointer[data-context='true']>i{opacity:0}
+.precision-pointer[data-context='true'] .cursor-arrow{opacity:1}
+.precision-pointer>span{left:25px;top:24px;border-color:#FFBE0B66;background:#0a100ff0;color:#e4fd97;font:9px/1.4 var(--mono);border-radius:4px;padding:8px 10px;max-width:200px}
+.precision-pointer[data-flip='true']>span{left:auto;right:25px}
+.precision-pointer[data-above='true']>span{top:auto;bottom:24px}
+.precision-pointer[data-warm='true']{color:#292116}.cursor-halo[data-warm='true']{border-color:#292116}
+@media(hover:hover) and (pointer:fine) and (min-width:1000px) and (prefers-reduced-motion:no-preference){.cursor-halo{display:block}html[data-cursor-ready='true'],html[data-cursor-ready='true'] *{cursor:none!important}}
+html[data-experience-mode='quick'] .cursor-halo{display:none}
+@media(prefers-reduced-motion:reduce){.signal-strand{stroke-dasharray:none!important;stroke-dashoffset:0!important}}

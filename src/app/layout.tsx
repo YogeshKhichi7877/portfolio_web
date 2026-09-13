@@ -5,6 +5,7 @@ import './capabilities.css';
 import './systems.css';
 import './finishing.css';
 import './portfolio-evolution.css';
+import './tom-loom.css';
 import 'lenis/dist/lenis.css';
 const origin = process.env.NEXT_PUBLIC_SITE_URL;
 export const metadata: Metadata = {

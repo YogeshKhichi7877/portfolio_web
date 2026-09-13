@@ -1,4 +1,5 @@
 import gsap from 'gsap';
+import { SIGNAL_THREADS, signalPath, signalPoints } from './tom-signal';
 
 /** Distinct scene choreography, registered inside ScrollDirector's media context. */
 export function createSystemMotion(desktop: boolean) {
@@ -16,10 +17,22 @@ export function createSystemMotion(desktop: boolean) {
     gsap.from(row.querySelector('div'),{clipPath:`inset(0 ${index%2?0:100}% 0 ${index%2?100:0}%)`,duration:.8,ease:'power3.out',scrollTrigger:{trigger:row,start:'top 86%',toggleActions:'play none none reverse'}});
   });
   gsap.from('.tom-wordmark',{letterSpacing:'.035em',duration:1,ease:'power3.out',scrollTrigger:{trigger:'.tom-intro',start:'top 84%',toggleActions:'play none none reverse'}});
+  // A continuous deformation of the same strands: waveform → context → routes → result.
+  const shapes=Array.from({length:4},(_,stage)=>Array.from({length:SIGNAL_THREADS},(_,strand)=>signalPoints(stage,strand)));
+  const strands=gsap.utils.toArray<SVGPathElement>('.signal-strand');
+  const signal={phase:0};
+  gsap.to(signal,{phase:3,ease:'none',scrollTrigger:{id:'tom-signal-loom',trigger:'.tom-stages',start:'top 65%',end:'bottom 85%',scrub:.7},onUpdate:()=>{
+    const from=Math.min(2,Math.floor(signal.phase)),mix=signal.phase-from;
+    strands.forEach((strand,i)=>strand.setAttribute('d',signalPath(shapes[from][i].map(([x,y],p)=>[x,y+(shapes[from+1][i][p][1]-y)*mix]))));
+  }});
+  gsap.from('.signal-strand',{strokeDashoffset:(_i:number,el:SVGPathElement)=>el.getTotalLength(),strokeDasharray:(_i:number,el:SVGPathElement)=>el.getTotalLength(),stagger:.018,duration:1.4,ease:'power2.out',scrollTrigger:{trigger:'.tom-signal',start:'top 86%',toggleActions:'play none none reverse'}});
+  gsap.fromTo('.signal-playhead',{attr:{x1:45,x2:45}},{attr:{x1:655,x2:655},ease:'none',scrollTrigger:{trigger:'.tom-stages',start:'top 65%',end:'bottom 85%',scrub:.7}});
   const stages=gsap.utils.toArray<HTMLElement>('.tom-stage');
   stages.forEach((stage,index)=>{
-    // Quiet, once-only entrances keep the workflow available while reading.
-    gsap.from(stage,{y:10,opacity:.8,duration:.45,ease:'power2.out',scrollTrigger:{id:`tom-stage-entrance-${index}`,trigger:stage,start:'top 94%',once:true}});
+    const reveal=gsap.timeline({scrollTrigger:{id:`tom-stage-entrance-${index}`,trigger:stage,start:'top 86%',end:'top 43%',scrub:.5}});
+    reveal.from(stage.querySelector('.tom-stage-index'),{y:45,rotationX:-65,transformOrigin:'50% 100%',opacity:.15,duration:1},0)
+      .from(stage.querySelector('.tom-stage-content'),{x:desktop?28:12,opacity:.35,duration:.8},.1)
+      .from(stage.querySelector('.tom-stage-rule i'),{scaleX:0,transformOrigin:'left',duration:1},0);
   });
   // Principles use expanding rules and a sequential decision diagram, not cards.
   gsap.utils.toArray<HTMLElement>('.principle').forEach(row=>gsap.from(row.querySelector('h3'),{wordSpacing:'20px',opacity:.25,duration:.8,scrollTrigger:{trigger:row,start:'top 85%',toggleActions:'play none none reverse'}}));
