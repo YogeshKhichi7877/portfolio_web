@@ -59,7 +59,7 @@ export function ScrollDirector() {
           cleanups.push(()=>sheet.removeEventListener('focusin',settle));
         });
         gsap.from('.capability-folio > i',{rotation:0,x:0,y:0,stagger:.08,scrollTrigger:{trigger:'.capability-layout',start:'top 88%',end:'top 38%',scrub:.5}});
-        createSystemMotion(Boolean(desktop));
+        cleanups.push(createSystemMotion(Boolean(desktop)));
         if(desktop){
           ScrollTrigger.create({trigger:'.journey-layout',start:'top 125px',end:'bottom 80%',pin:'.journey-layout > div:first-child',pinSpacing:false});
         }
@@ -104,11 +104,14 @@ export function ScrollDirector() {
       cleanups.push(createTraces(Boolean(reduce)));
       const tomElements=Array.from(tom.querySelectorAll<HTMLElement>('.tom-stage'));
       let activeTom=-1;
+      let tomOffsets:number[]=[];
+      const measureTom=()=>{tomOffsets=tomElements.map(el=>el.getBoundingClientRect().top+window.scrollY);};
+      measureTom();
       const syncTom=()=>{
         let index=0, rowTop=-Infinity;
-        tomElements.forEach((el,i)=>{const top=el.getBoundingClientRect().top;if(top<=innerHeight*.48&&top>rowTop+2){rowTop=top;index=i;}});
-        // Two desktop panels share a row; retain an explicitly selected panel there.
-        if(activeTom>=0&&Math.abs(tomElements[activeTom].getBoundingClientRect().top-tomElements[index].getBoundingClientRect().top)<2)index=activeTom;
+        const threshold=window.scrollY+innerHeight*.48;
+        tomOffsets.forEach((top,i)=>{if(top<=threshold&&top>rowTop+2){rowTop=top;index=i;}});
+        if(activeTom>=0&&Math.abs(tomOffsets[activeTom]-tomOffsets[index])<2)index=activeTom;
         if(index!==activeTom){activeTom=index;selectStage(index);}
       };
       tom.querySelectorAll<HTMLAnchorElement>('[data-tom-select]').forEach(link=>{
@@ -129,7 +132,7 @@ export function ScrollDirector() {
         link.addEventListener('click',navigate);
         cleanups.push(()=>link.removeEventListener('click',navigate));
       });
-      ScrollTrigger.create({trigger:tom,start:'top bottom',end:'bottom top',onUpdate:syncTom,onRefresh:syncTom});
+      ScrollTrigger.create({trigger:tom,start:'top bottom',end:'bottom top',onUpdate:syncTom,onRefresh:()=>{measureTom();syncTom();}});
       ScrollTrigger.sort();
       const dialog=document.querySelector('dialog');
       const sync=()=>{if(document.hidden||dialog?.open)lenis?.stop();else lenis?.start();};

@@ -9,6 +9,10 @@
 .tom-loom .tom-system-head{padding:0 0 18px;border:0}
 .tom .tom-signal{position:relative;margin:0 0 24px;background:radial-gradient(ellipse at 50% 48%,#183437,#0d1a21 74%);border:1px solid #31505a;border-radius:50% 50% 4px 4px / 13% 13% 4px 4px;overflow:hidden}
 .tom-signal svg{width:100%;display:block;height:auto}
+.signal-canvas{display:none;position:absolute;top:0;left:0;width:100%;height:auto;aspect-ratio:700/440;pointer-events:none}
+.tom-signal[data-signal-renderer='canvas'] .signal-canvas{display:block}
+.tom-signal[data-signal-renderer='canvas'] .signal-strands{visibility:hidden}
+.tom-signal{contain:paint;isolation:isolate}
 .signal-strand{fill:none;stroke:url(#signal-ink);stroke-width:1.2;opacity:.75}
 .signal-strand:nth-child(3n){stroke-width:1.8;opacity:1}
 .signal-registration{stroke:#80a8b1;opacity:.4}
@@ -21,7 +25,9 @@
 .tom .tom-loom .tom-controls .tom-node{display:flex;flex-direction:column;min-height:62px;gap:10px;padding:12px 2px;border:0;border-top:2px solid transparent;background:none;border-radius:0;font-size:10px}
 .tom .tom-loom .tom-controls .tom-node[aria-current='step'],.tom .tom-loom .tom-controls .tom-node:hover{border-top-color:#b8edce;background:#b8edce0a;color:#b8edce}
 .tom .tom-loom .tom-stages{display:block}
-.tom .tom-loom .tom-stage{display:grid;grid-template-columns:65px 1fr;gap:20px;min-height:430px;align-content:center;padding:55px 0;border:0;border-bottom:1px solid #355354;border-radius:0;background:none;perspective:800px}
+.tom .tom-loom .tom-stage{display:grid;grid-template-columns:65px 1fr;gap:20px;min-height:430px;align-content:center;padding:55px 0;border:0;border-bottom:1px solid #355354;border-radius:0;background:none}
+.tom-stage-content h3{transition:color .2s}
+.tom[data-stage='listen'] #tom-listen h3,.tom[data-stage='understand'] #tom-understand h3,.tom[data-stage='act'] #tom-act h3,.tom[data-stage='verify'] #tom-verify h3{color:#b8edce}
 .tom-stage-index{font:400 65px/1 Georgia,serif;color:#81b7b4;letter-spacing:-.07em}
 .tom-stage-content{min-width:0}
 .tom .tom-loom .tom-stage h3{font-size:clamp(38px,4vw,60px);margin:18px 0 22px}
